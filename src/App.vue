@@ -8,8 +8,6 @@
 export default {
   name: 'App',
   components: {
-
-    // login: Login,
   },
 };
 </script>

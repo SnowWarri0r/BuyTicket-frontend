@@ -84,7 +84,7 @@ export default {
         return callback(new Error('余额不能为空'));
       }
       setTimeout(() => {
-        if (!Number.isInteger(value)) {
+        if (!Number.isInteger(+value)) {
           callback(new Error('请输入数字值'));
         } else {
           callback();

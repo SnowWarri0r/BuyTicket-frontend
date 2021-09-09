@@ -1,6 +1,7 @@
 import Login from '../components/LoginForm.vue';
 import Register from '../components/RegisterForm.vue';
 import Home from '../components/Home.vue';
+import Charge from '../components/Charge.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import request from '../plugins/axios';
 const routes = [
@@ -15,6 +16,7 @@ const routes = [
   },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
+  { path:'/charge', component:Charge },
 ];
 const router = createRouter({
   history: createWebHistory(),
@@ -36,13 +38,10 @@ router.beforeEach(async (to, from, next) => {
           headers: {
             Authorization: localStorage.getItem('Authorization'),
           },
-        })
-          .then(() => {
-            next();
-          })
-          .catch(() => {
-            next({ path: '/login' });
-          });
+        }).catch(() => {
+          next({ path: '/login' });
+        });
+        next();
       }
     } else {
       next();

@@ -101,6 +101,9 @@ export default {
                 'Authorization',
                 response.headers.authorization
               );
+              setTimeout(() => {
+                this.$router.push('/home');
+              }, 1500);
             })
             .catch((error) => {
               if (error.response.status == '404') {

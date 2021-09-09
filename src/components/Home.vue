@@ -3,7 +3,7 @@
     <el-main class="container">
       <div class="btn-container">
         <h2 style="display:inline-block;margin-block:10px;">个人信息</h2>
-        <el-button type="primary" style="float: right"
+        <el-button type="primary" style="float: right" @click="goToCharge()"
           >前往汇款<i class="el-icon-arrow-right el-icon--right"></i
         ></el-button>
       </div>
@@ -66,6 +66,11 @@ export default {
       activeIndex: '1',
       size: '',
     };
+  },
+  methods: {
+    goToCharge() {
+      this.$router.push('/charge');
+    },
   },
 };
 </script>
