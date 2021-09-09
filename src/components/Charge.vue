@@ -128,8 +128,6 @@ export default {
   height: 40px;
 }
 .container {
-  width: 70%;
-  height: 30%;
   margin: 200px 200px 500px 200px;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
