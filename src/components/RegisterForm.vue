@@ -60,7 +60,7 @@
 </template>
 
 <script>
-const axios = require('axios');
+import request from '../plugins/axios';
 import { ElMessage } from 'element-plus';
 export default {
   name: 'RegisterForm',
@@ -132,7 +132,7 @@ export default {
           let username = this.userRegisterForm.username;
           let password = this.userRegisterForm.password;
           let balance = this.userRegisterForm.balance;
-          axios
+          request
             .post('http://localhost:8081/api/user/register', {
               username: username,
               balance: balance,
@@ -143,7 +143,7 @@ export default {
               setTimeout(() => this.$router.push('/login'), 1500);
             })
             .catch((error) => {
-              ElMessage(error.message);
+              ElMessage.error(error.message);
             });
         } else {
           ElMessage('表单信息有误!');

@@ -13,21 +13,21 @@
             <i class="el-icon-user"></i>
             用户名
           </template>
-          kooriookami
+          {{ username }}
         </el-descriptions-item>
         <el-descriptions-item class-name="balance">
           <template #label>
             <i class="el-icon-coin"></i>
             账户余额
           </template>
-          1000.00
+          {{ balance }}
         </el-descriptions-item>
         <el-descriptions-item class-name="role">
           <template #label>
             <i class="el-icon-lock"></i>
             权限组
           </template>
-          ROLE_USER
+          {{ role }}
         </el-descriptions-item>
       </el-descriptions>
     </el-main>
@@ -36,24 +36,23 @@
 
 <script>
 import { ElMessage } from 'element-plus';
-const axios = require('axios');
+// const axios = require('axios');
+import request from '../plugins/axios';
 export default {
   name: 'Home',
   mounted() {
     let authorization = localStorage.getItem('Authorization');
-    axios
-      .get('http://localhost:8081/api/user/profile', {
-        headers: {
-          Authorization: authorization,
-        },
-      })
+    request({
+      url: '/user/profile',
+      method: 'GET',
+      headers: {
+        Authorization: authorization,
+      },
+    })
       .then((response) => {
-        document.getElementsByClassName('username')[0].innerText =
-          response.data.username;
-        document.getElementsByClassName('balance')[0].innerText =
-          response.data.balance;
-        document.getElementsByClassName('role')[0].innerText =
-          response.data.role;
+        this.username = response.data.username;
+        this.balance = response.data.balance;
+        this.role = response.data.role;
       })
       .catch((error) => {
         ElMessage.error(error.message);
@@ -61,6 +60,9 @@ export default {
   },
   data() {
     return {
+      username: '',
+      balance: '',
+      role: '',
       activeIndex: '1',
       size: '',
     };

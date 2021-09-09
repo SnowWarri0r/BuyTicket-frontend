@@ -46,7 +46,7 @@
 </template>
 
 <script>
-const axios = require('axios');
+import request from '../plugins/axios';
 import { ElMessage } from 'element-plus';
 export default {
   name: 'LoginForm',
@@ -90,7 +90,7 @@ export default {
         if (valid) {
           let username = this.userLoginForm.username;
           let password = this.userLoginForm.password;
-          axios
+          request
             .post('http://localhost:8081/api/auth/login', {
               username: username,
               password: password,
@@ -103,7 +103,9 @@ export default {
               );
             })
             .catch((error) => {
-              this.$alert(error.message);
+              if (error.response.status == '404') {
+                ElMessage.error('账户名或密码错误');
+              } else this.$alert(error.message);
             });
         } else {
           ElMessage('表单参数有误！');
