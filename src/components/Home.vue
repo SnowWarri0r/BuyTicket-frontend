@@ -55,6 +55,7 @@ export default {
         this.role = response.data.role;
       })
       .catch((error) => {
+        this.$isAuthenticated = false;
         ElMessage.error(error.message);
       });
   },
